@@ -1,5 +1,6 @@
 package com.example.cobaapps.Pertemuan_3
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -31,6 +32,9 @@ class ThirdActivity : AppCompatActivity() {
 
             Toast.makeText(
                 this, "Pesan berhasil dikirim ke $noTujuan", Toast.LENGTH_SHORT).show()
+
+            val intent = Intent(this, ThirdResultActivity::class.java)
+            startActivity(intent)
         }
     }
 }
