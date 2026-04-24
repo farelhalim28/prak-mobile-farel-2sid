@@ -1,37 +1,52 @@
-package com.example.cobaapps.pertemuan_2
+package com.example.cobaapps.pertemuan_2 // Pastikan folder/package-nya kecil semua
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.cobaapps.R
+import com.example.cobaapps.databinding.ActivitySecondBinding
 
 class SecondActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySecondBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_second)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+
+        binding = ActivitySecondBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.apply {
+            title = "Pertemuan 2"
+            setDisplayHomeAsUpEnabled(true)
+        }
+
+        // Pakai binding.main agar sinkron dengan ID di XML lu
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // Inisialisasi komponen
-        val inputNama: EditText = findViewById(R.id.inputNama)
-        val btnSubmit: Button = findViewById(R.id.btnSubmit)
+        binding.btnSubmit.setOnClickListener {
+            val nama = binding.inputNama.text.toString()
+            Log.e("Klik btnSubmit", "Tombol ditekan. Nama: $nama")
 
-        btnSubmit.setOnClickListener {
-            //Mengambil value dari inputNama dan menampilkan di Logcat
-            val nama = inputNama.text
-            Log.e("Klik btnSubmit","Tombol berhasil di tekan. Isi dari inputNama = $nama")
-
-            Toast.makeText(this, "Anda telah melakukan klik pada tombol Submit", Toast.LENGTH_SHORT).show()
+            if (nama.isNotEmpty()) {
+                Toast.makeText(this, "Halo $nama, Voucher berhasil diklaim!", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Silahkan isi nama dulu bro!", Toast.LENGTH_SHORT).show()
+            }
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        return true
     }
 }

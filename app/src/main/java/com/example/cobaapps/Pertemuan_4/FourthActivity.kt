@@ -1,4 +1,4 @@
-package com.example.cobaapps.Pertemuan_4
+package com.example.cobaapps.pertemuan_4
 
 import android.os.Bundle
 import android.util.Log
@@ -13,27 +13,40 @@ import com.google.android.material.snackbar.Snackbar
 
 class FourthActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFourthBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        Log.e("onCreate", "FourthActivity dibuat pertama kali")
+
         binding = ActivityFourthBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+
+        // 1. PASANG TOOLBAR (WAJIB setelah setContentView)
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.apply {
+            title = "Pertemuan 4"
+            setDisplayHomeAsUpEnabled(true) // Munculin panah back
+        }
+
+        // 2. WINDOW INSETS (Biar nggak ketutup status bar)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-
         }
 
+        // Ambil data intent
         val name = intent.getStringExtra("nama")
         val from = intent.getStringExtra("asal")
         val age = intent.getIntExtra("usia", 0)
         Log.e("Data Intent", "Nama: $name , Usia: $age, Asal: $from")
-        binding.btnKembali.setOnClickListener {
 
+        // Button Kembali
+        binding.btnKembali.setOnClickListener {
             finish()
         }
+
+        // Snackbar
         binding.btnShowSnackbar.setOnClickListener {
             Snackbar.make(binding.root, "Ini adalah Snackbar", Snackbar.LENGTH_SHORT)
                 .setAction("Tutup"){
@@ -42,6 +55,7 @@ class FourthActivity : AppCompatActivity() {
                 .show()
         }
 
+        // Alert Dialog
         binding.btnShowAlertDialog.setOnClickListener {
             MaterialAlertDialogBuilder(this)
                 .setTitle("Konfirmasi")
@@ -56,15 +70,11 @@ class FourthActivity : AppCompatActivity() {
                 }
                 .show()
         }
-
-    }
-    override fun onStart() {
-        super.onStart()
-        Log.e("onStart", "onStart: {nama_activity} terlihat di layar")
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.e("onDestroy", "{nama_activity} dihapus dari stack")
+    // Fungsi biar panah back di toolbar bisa diklik
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        return true
     }
 }
