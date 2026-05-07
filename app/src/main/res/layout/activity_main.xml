@@ -67,6 +67,14 @@
             android:text="Pertemuan 5 (WEBVIEW)"
             app:backgroundTint="#673AB7" />
 
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#F44336" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
