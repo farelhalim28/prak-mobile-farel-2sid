@@ -1,4 +1,4 @@
-package com.example.cobaapps.pertemuan_2 // Pastikan folder/package-nya kecil semua
+package com.example.cobaapps.Home.pertemuan_2 // Pastikan folder/package-nya kecil semua
 
 import android.os.Bundle
 import android.util.Log

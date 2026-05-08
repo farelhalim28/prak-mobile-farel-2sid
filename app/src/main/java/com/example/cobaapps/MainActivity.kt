@@ -4,8 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.cobaapps.Home.Pertemuan_7.SeventhActivity
 import com.example.cobaapps.databinding.ActivityMainBinding
-import com.example.cobaapps.pertemuan_2.SecondActivity
+import com.example.cobaapps.Home.pertemuan_2.SecondActivity
 import com.example.cobaapps.pertemuan_3.ThirdActivity
 import com.example.cobaapps.pertemuan_4.FourthActivity
 import com.example.cobaapps.pertemuan_5.FifthActivity
@@ -40,6 +41,11 @@ class MainActivity : AppCompatActivity() {
         binding.btnKelima.setOnClickListener {
             startActivity(Intent(this, FifthActivity::class.java))
         }
+
+        binding.btnKetujuh.setOnClickListener {
+            startActivity(Intent(this, SeventhActivity::class.java))
+        }
+
 
         // =========================
         // LOGOUT FIX MODUL

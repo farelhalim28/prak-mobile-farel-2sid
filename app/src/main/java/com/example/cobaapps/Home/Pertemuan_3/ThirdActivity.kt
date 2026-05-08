@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.example.cobaapps.R
 import com.example.cobaapps.databinding.ActivityThirdBinding
 
 class ThirdActivity : AppCompatActivity() {
